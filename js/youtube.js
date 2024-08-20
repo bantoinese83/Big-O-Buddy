@@ -1,6 +1,6 @@
-const API_KEY = 'AIzaSyD4lbSelnYbAsBipYpFam6v9ccVa__v4IQ';
+const API_KEY = 'AIzaSyAN4aiEhnHWVeA88bP-rA4Ecl-8BEHVE0Y';
 const API_URL = 'https://www.googleapis.com/youtube/v3/search';
-const MAX_RESULTS = 22;
+const MAX_RESULTS = 8;
 let currentPage = 1;
 let totalPages = 1;
 let allVideos = [];
@@ -9,6 +9,9 @@ let allVideos = [];
 async function fetchTopYouTubeVideos(pageToken = '') {
   try {
     const response = await fetch(`${API_URL}?part=snippet&maxResults=${MAX_RESULTS}&q=Big+O+Notation&type=video&pageToken=${pageToken}&key=${API_KEY}`);
+    if (response.status === 403) { // Rate limit hit
+      throw new Error('Rate limit exceeded');
+    }
     return await response.json();
   } catch (error) {
     console.error('Error fetching YouTube videos:', error);
@@ -44,9 +47,26 @@ function displayVideosInGrid(videos) {
   });
 }
 
+// Function to show ghost loaders
+function showGhostLoaders(count) {
+  const videoGrid = document.getElementById("video-grid");
+  videoGrid.innerHTML = ""; // Clear existing content
+
+  for (let i = 0; i < count; i++) {
+    const ghostItem = document.createElement("div");
+    ghostItem.classList.add("video-item", "ghost-loader");
+    ghostItem.innerHTML = `
+      <div class="ghost-thumbnail"></div>
+      <div class="ghost-title"></div>
+      <div class="ghost-description"></div>
+    `;
+    videoGrid.appendChild(ghostItem);
+  }
+}
+
 // Function to handle pagination
-async function handlePagination() {
-  const data = await fetchTopYouTubeVideos();
+async function handlePagination(pageToken = '') {
+  const data = await fetchTopYouTubeVideos(pageToken);
   allVideos = allVideos.concat(data.items);
   totalPages = Math.ceil(allVideos.length / MAX_RESULTS);
   const sortedVideos = sortVideos(allVideos);

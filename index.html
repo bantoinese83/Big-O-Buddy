@@ -15,8 +15,11 @@
 <nav class="navbar">
   <div class="container">
     <h1 class="title">Big-O Buddy</h1>
-    <h2 class="title">Cheat Sheet and Guide</h2>
-
+    <h1 class="title">Cheat Sheet and Guide</h1>
+    Big O notation is a mathematical tool used to describe the limiting behavior of a function as its argument approaches a specific value or infinity. It's particularly important in computer science for classifying algorithms based on their run time or space requirements as input size grows.
+    The notation focuses on the dominant terms of a function, ignoring constant factors and lower-order terms, to provide an upper bound on the growth rate. For example, an algorithm with a run time of 6x⁴ - 2x³ + 5 would be classified as O(x⁴), as the x⁴ term dominates the growth rate for large values of x.
+    Beyond Big O, several related notations, such as little-o (o), Big Omega (Ω), Big Theta (Θ), and others, describe other kinds of bounds on asymptotic growth rates. Each notation provides specific information about the algorithm's performance, helping developers compare and choose the most efficient algorithms for specific tasks.
+    Big O notation is crucial in algorithm analysis, especially for large datasets. Understanding the time and space complexity of algorithms helps developers write efficient code and make informed decisions about which data structures and algorithms to use.
     <div class="nav-buttons">
       <button class="button" id="theme-toggle">
         <span class="icon is-small">
@@ -817,30 +820,45 @@
         Use code with caution.
       </div>
     </section>
-    <section id="explaining-big-o-to-a-kid">
-      <h2 class="title">Explaining Big-O to a Kid 👶</h2>
-      <div class="explanation">
-        <ul>
-          <li>
-            Imagine you have a toy box with many toys 🧸. If you want to find a specific toy, you might have to look
-            through each toy one by one until you find it. This is like searching through a list of items. The time it
-            takes to find the toy depends on how many toys are in the box. This is called linear search, and it has a
-            Big-O notation of O(n), where n is the number of toys.
-          </li>
-          <li>
-            Now, imagine if the toys are organized in a special way, like in a sorted list 📚. If you know the toy you're
-            looking for is always in the middle, you can find it much faster. This is like binary search, and it has a
-            Big-O notation of O(log n). It means the time it takes to find the toy grows much slower compared to the
-            number of toys.
-          </li>
-          <li>
-            Let's say you have a magical toy box that can instantly find any toy you want ✨. This is like having a hash
-            table, and it has a Big-O notation of O(1). It means it takes the same amount of time to find a toy, no
-            matter how many toys are in the box.
-          </li>
-        </ul>
-      </div>
-    </section>
+<section id="explaining-big-o-to-a-kid">
+  <h2 class="title">Explaining Big-O to a Kid 👶</h2>
+  <div class="explanation">
+    <ul>
+      <li>
+        Imagine you have a toy box with many toys 🧸. If you want to find a specific toy, you might have to look
+        through each toy one by one until you find it. This is like searching through a list of items. The time it
+        takes to find the toy depends on how many toys are in the box. This is called linear search, and it has a
+        Big-O notation of O(n), where n is the number of toys.
+      </li>
+      <li>
+        Now, imagine if the toys are organized in a special way, like in a sorted list 📚. If you know the toy you're
+        looking for is always in the middle, you can find it much faster. This is like binary search, and it has a
+        Big-O notation of O(log n). It means the time it takes to find the toy grows much slower compared to the
+        number of toys.
+      </li>
+      <li>
+        Let's say you have a magical toy box that can instantly find any toy you want ✨. This is like having a hash
+        table, and it has a Big-O notation of O(1). It means it takes the same amount of time to find a toy, no
+        matter how many toys are in the box.
+      </li>
+      <li>
+        Imagine you have a stack of books 📚. If you want to add a new book to the top or take the top book off, it
+        only takes a moment. This is like a stack data structure, and it has a Big-O notation of O(1) for both adding
+        and removing books.
+      </li>
+      <li>
+        Think about a line of people waiting to get into a movie 🎥. The first person in line is the first to get in.
+        This is like a queue data structure, and it has a Big-O notation of O(1) for both adding a person to the end
+        of the line and letting the first person in.
+      </li>
+      <li>
+        Imagine you have a list of your friends' birthdays 🎂. If you want to sort the list by date, you might have to
+        compare each birthday with every other birthday. This is like bubble sort, and it has a Big-O notation of O(n^2),
+        where n is the number of birthdays.
+      </li>
+    </ul>
+  </div>
+</section>
 
     <section id="study-guide">
       <h2 class="title">Study Guide 📖</h2>
