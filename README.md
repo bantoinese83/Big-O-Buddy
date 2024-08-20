@@ -56,3 +56,8 @@ Contributions, suggestions, and feedback are always welcome! If you find any err
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+
+## Screenshots 📸
+
+![Screenshot 1](/img/ss.png)
