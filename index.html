@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Big-O Complexity: A Comprehensive Guide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <h1 class="title">Big-O Complexity</h1>
+    <h2 class="title">Cheat Sheet and Guide</h2>
+
+    <div class="nav-buttons">
+      <button class="button" id="theme-toggle">
+        <span class="icon is-small">
+          <i class="fas fa-sun"></i> <span id="theme-label">Dark Mode</span>
+        </span>
+      </button>
+      <button class="button" onclick="window.print()">
+        <span class="icon is-small">
+          <i class="fas fa-print"></i>
+        </span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="content">
+  <div class="column">
+    <div class="toc">
+      <h3>Table of Contents 📖</h3>
+      <ul>
+        <li><a href="#what-is-big-o">What is Big-O Complexity? ❔</a></li>
+        <li><a href="#complexity-chart">Big-O Complexity Chart 📈</a></li>
+        <li><a href="#data-structures">Common Data Structures 🧱</a></li>
+        <li><a href="#sorting-algorithms">Sorting Algorithms 🔄</a></li>
+        <li><a href="#use-cases">Use Cases for Big-O 🧰</a></li>
+        <li><a href="#quiz-practice">Test Your Knowledge 💯</a></li>
+        <li><a href="#learn-more">Learn More 📚</a></li>
+        <li><a href="#big-o-myths">Big-O Myths 🚫</a></li>
+        <li><a href="#amortized-analysis">Amortized Analysis 🤔</a></li>
+        <li><a href="#other-notations">Other Asymptotic Notations 🧮</a></li>
+        <li><a href="#glossary">Algorithm Analysis Glossary 📖</a></li>
+        <li><a href="#space-time-tradeoffs">Space-Time Trade-offs ⚖️</a></li>
+        <li><a href="#p-vs-np">P vs. NP 🔐</a></li>
+        <li><a href="#big-o-in-interviews">Big-O in Interviews 💼</a></li>
+        <li><a href="#big-o-in-libraries">Big-O in Libraries 💻</a></li>
+        <li><a href="#profiling-and-benchmarking">Profiling and Benchmarking ⏱️</a></li>
+        <li><a href="#acronyms">Common Big-O Acronyms 📝</a></li>
+        <li><a href="#explaining-big-o-to-a-kid">Explaining Big-O to a Kid 👶</a></li>
+        <li><a href="#study-guide">Study Guide 📖</a></li>
+        <li><a href="#space-complexity">Space Complexity 🌌</a></li>
+        <li><a href="#time-complexity">Time Complexity ⏰</a></li>
+        <li><a href="#video-section">Big-O Complexity Videos 🎬</a></li>
+        <li><a href="#disqus_thread">Comments 💬</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="column">
+    <section id="what-is-big-o">
+      <h2 class="title">What is Big-O Complexity ❔</h2>
+      <div class="explanation">
+        <h3>Defining Efficiency</h3>
+        <p>
+          Big-O notation is a mathematical notation used to describe the limiting behavior
+          of a function when the argument tends towards a particular value or infinity. In
+          computer science, we use it to analyze the efficiency of algorithms,
+          specifically how the time or space required by an algorithm grows as the input
+          size increases.
+        </p>
+
+        <h3>Key Concepts</h3>
+        <ul>
+          <li>
+            <strong>Time Complexity:</strong> How the execution time of an algorithm
+            scales with the input size. For example, an algorithm with linear time
+            complexity (O(n)) will take twice as long to run if the input size doubles.
+          </li>
+          <li>
+            <strong>Space Complexity:</strong> How the memory usage of an algorithm scales
+            with the input size. An algorithm with constant space complexity (O(1)) will
+            use the same amount of memory regardless of the input size.
+          </li>
+          <li>
+            <strong>Asymptotic Analysis:</strong> Focusing on how an algorithm behaves for
+            large input sizes, ignoring constant factors and lower-order terms. This
+            means we are primarily concerned with the growth rate of the algorithm, not
+            the exact time or space it takes to run.
+          </li>
+          <li>
+            <strong>Best, Average, and Worst Case:</strong> These terms describe the
+            performance of an algorithm under different conditions. The best case is the
+            scenario where the algorithm performs the fastest, the average case is the
+            expected performance under typical conditions, and the worst case is the
+            scenario where the algorithm performs the slowest.
+          </li>
+          <li>
+            <strong>Big-O, Big-Theta, and Big-Omega:</strong> These notations are used to
+            describe the upper, tight, and lower bounds of an algorithm's performance,
+            respectively. Big-O (O) describes the worst-case scenario, Big-Theta (Θ)
+            describes the average-case scenario, and Big-Omega (Ω) describes the best-case
+            scenario.
+          </li>
+          <li>
+            <strong>Common Time Complexities:</strong> Some common time complexities include:
+            <ul>
+              <li><strong>O(1):</strong> Constant time complexity, where the algorithm's
+                performance is independent of the input size.
+              </li>
+              <li><strong>O(log n):</strong> Logarithmic time complexity, where the
+                algorithm's performance grows logarithmically with the input size.
+              </li>
+              <li><strong>O(n):</strong> Linear time complexity, where the algorithm's
+                performance grows linearly with the input size.
+              </li>
+              <li><strong>O(n log n):</strong> Linearithmic time complexity, where the
+                algorithm's performance grows linearly and logarithmically with the input size.
+              </li>
+              <li><strong>O(n^2):</strong> Quadratic time complexity, where the algorithm's
+                performance grows quadratically with the input size.
+              </li>
+              <li><strong>O(2^n):</strong> Exponential time complexity, where the algorithm's
+                performance grows exponentially with the input size.
+              </li>
+              <li><strong>O(n!):</strong> Factorial time complexity, where the algorithm's
+                performance grows factorially with the input size.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="complexity-chart">
+      <h2 class="title">Big-O Complexity Chart 📈</h2>
+      <div class="explanation">
+        <p>
+          This chart visually compares the growth of different Big-O complexities.
+          You can change the chart type, input size, and select which complexities
+          to display. Watch how the growth rates change!
+        </p>
+      </div>
+      <div>
+        <label for="chartTypeSelect">Chart Type:</label>
+        <select id="chartTypeSelect">
+          <option value="line">Line</option>
+          <option value="bar">Bar</option>
+          <option value="scatter">Scatter</option>
+        </select>
+      </div>
+      <div>
+        <label for="inputSizeRange">Input Size:</label>
+        <input type="range" id="inputSizeRange" min="1" max="10000" value="10000">
+      </div>
+      <div id="complexityCheckboxes">
+        <label>
+          <input type="checkbox" name="complexity" value="O(1)" checked>
+          O(1)
+        </label>
+        <label>
+          <input type="checkbox" name="complexity" value="O(log n)" checked>
+          O(log n)
+        </label>
+        <label>
+          <input type="checkbox" name="complexity" value="O(n)" checked>
+          O(n)
+        </label>
+        <label>
+          <input type="checkbox" name="complexity" value="O(n log n)" checked>
+          O(n log n)
+        </label>
+        <label>
+          <input type="checkbox" name="complexity" value="O(n^2)" checked>
+          O(n^2)
+        </label>
+        <label>
+          <input type="checkbox" name="complexity" value="O(2^n)" checked>
+          O(2^n)
+        </label>
+        <label>
+          <input type="checkbox" name="complexity" value="O(n!)" checked>
+          O(n!)
+        </label>
+      </div>
+      <div class="chart-container">
+        <canvas id="complexityChart" width="600" height="300"></canvas>
+      </div>
+    </section>
+    <section id="data-structures">
+      <h2 class="title">Common Data Structures 🧱 and Their Big-O Complexities</h2>
+      <div class="search-filter-container">
+        <label for="search-data-structures"></label><input type="text" id="search-data-structures"
+                                                           placeholder="Search data structures...">
+        <label for="filter-data-structures-complexity"></label><select id="filter-data-structures-complexity">
+        <option value="">All Complexities</option>
+        <option value="O(1)">O(1)</option>
+        <option value="O(log n)">O(log n)</option>
+        <option value="O(n)">O(n)</option>
+        <option value="O(n log n)">O(n log n)</option>
+        <option value="O(n^2)">O(n^2)</option>
+      </select>
+      </div>
+      <div class="table-container" id="data-structures-table">
+        <table>
+          <thead>
+          <tr>
+            <th>Data Structure</th>
+            <th>Access</th>
+            <th>Search</th>
+            <th>Insertion</th>
+            <th>Deletion</th>
+            <th>Space Complexity</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="sorting-algorithms">
+      <h2 class="title">Array Sorting Algorithms 🔄 and Their Big-O Complexities</h2>
+      <div class="search-filter-container">
+        <label for="search-sorting-algorithms"></label><input type="text" id="search-sorting-algorithms"
+                                                              placeholder="Search sorting algorithms...">
+        <label for="filter-sorting-algorithms-complexity"></label><select id="filter-sorting-algorithms-complexity">
+        <option value="">All Complexities</option>
+        <option value="O(n)">O(n) Best Case</option>
+        <option value="O(n log n)">O(n log n) Average</option>
+        <option value="O(n^2)">O(n^2) Worst Case</option>
+      </select>
+      </div>
+      <div class="table-container" id="sorting-algorithms-table">
+        <table>
+          <thead>
+          <tr>
+            <th>Algorithm</th>
+            <th>Best</th>
+            <th>Average</th>
+            <th>Worst</th>
+            <th>Space Complexity</th>
+            <th>Code Example (Python)</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="use-cases">
+      <h2 class="title">Use Cases for Big-O Complexity 🧰</h2>
+      <div class="explanation">
+        <h3>Choosing the Right Algorithm</h3>
+        <p>
+          Understanding Big-O complexity is crucial when choosing algorithms for
+          your applications. Here are some examples of how Big-O considerations
+          apply in real-world scenarios:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Searching for a Specific Item in a Large Dataset:</strong>
+            If you're dealing with a very large database, a linear search algorithm
+            (O(n)) would be very inefficient. A binary search algorithm (O(log n)),
+            which works on sorted data, would be much more suitable.
+          </li>
+          <li>
+            <strong>Sorting a List of Items:</strong> For sorting a relatively small
+            list, insertion sort (O(n^2)) might be sufficient. However, for larger
+            datasets, more efficient algorithms like merge sort (O(n log n)) or
+            quicksort (O(n log n) average case) would be preferable.
+          </li>
+          <li>
+            <strong>Real-Time Applications:</strong> In real-time systems where response
+            time is critical, algorithms with constant time complexity (O(1)) are
+            highly desirable. For example, a game engine might use constant time
+            operations for collision detection or rendering updates.
+          </li>
+          <li>
+            <strong>Data Compression:</strong> When compressing data, algorithms with
+            lower time complexity are preferred to ensure quick processing. For example,
+            Huffman coding (O(n log n)) is often used for efficient data compression.
+          </li>
+          <li>
+            <strong>Network Routing:</strong> In network routing, algorithms like
+            Dijkstra's algorithm (O(V^2) or O(E + V log V) with a priority queue) are
+            used to find the shortest path, ensuring efficient data packet delivery.
+          </li>
+          <li>
+            <strong>Machine Learning:</strong> Training machine learning models often
+            involves large datasets. Algorithms with lower time complexity, such as
+            gradient descent (O(n)), are preferred for faster convergence.
+          </li>
+          <li>
+            <strong>Cryptography:</strong> Cryptographic algorithms need to be efficient
+            to handle large amounts of data securely. For example, RSA encryption has
+            a time complexity of O(n^3) for key generation, which is feasible for
+            practical use.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="quiz-practice">
+      <h2 class="title">Test Your Knowledge 💯</h2>
+      <div id="quiz-container">
+      </div>
+      <button id="next-question" style="display: none;">Next Question</button>
+
+    </section>
+
+    <section id="learn-more">
+      <h2 class="title">Learn More 📚</h2>
+      <div class="learn-more">
+        <a href="https://en.wikipedia.org/wiki/Big_O_notation">Big-O Notation on Wikipedia</a><br>
+        <a
+          href="https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation">
+          Big-O Notation on Khan Academy
+        </a>
+        <br>
+        <a href="https://www.freecodecamp.org/news/big-o-notation-explained-with-examples/">
+          Big-O Notation Explained with Examples on FreeCodeCamp
+        </a>
+      </div>
+    </section>
+
+    <section id="big-o-myths">
+      <h2 class="title">Big-O Myths 🚫</h2>
+      <div class="explanation">
+        <p>Let's bust some common misconceptions about Big-O complexity.</p>
+        <h3>Myth #1: Constant Factors Don't Matter</h3>
+        <p>
+          While Big-O ignores constant factors, those factors can still have a
+          significant impact on real-world performance, especially for smaller
+          input sizes.
+        </p>
+        <h3>Myth #2: Only Worst-Case Complexity Matters</h3>
+        <p>
+          While worst-case complexity is important, average-case complexity is often
+          more relevant for practical applications. Understanding both is crucial.
+        </p>
+        <h3>Myth #3: Optimize Prematurely</h3>
+        <p>
+          Don't spend time optimizing for Big-O until you've identified a
+          performance bottleneck. Premature optimization can lead to more complex,
+          less readable code without a real benefit.
+        </p>
+        <h3>Myth #4: Big-O Is the Only Metric</h3>
+        <p>
+          Big-O is a valuable tool, but it's not the only factor to consider when
+          evaluating algorithm efficiency. Other factors like constant factors,
+          memory usage, and code readability also play a role.
+        </p>
+        <h3>Myth #5: Big-O Complexity Is Always Accurate</h3>
+        <p>
+          Big-O provides an upper bound on time complexity, but it doesn't always
+          reflect the actual performance of an algorithm in practice. Real-world
+          performance can vary based on hardware, input data, and other factors.
+        </p>
+        <h3>Myth #6: Big-O Complexity Is the Same for All Inputs</h3>
+        <p>
+          Big-O complexity can vary depending on the nature of the input data. For
+          example, the performance of quicksort can degrade to O(n^2) for certain
+          types of input, even though its average-case complexity is O(n log n).
+        </p>
+        <h3>Myth #7: Big-O Complexity Is the Only Thing That Matters</h3>
+        <p>
+          While Big-O complexity is important, other factors such as ease of
+          implementation, maintainability, and scalability should also be
+          considered when choosing an algorithm.
+        </p>
+        <h3>Myth #8: Big-O Complexity Is Always the Same for Similar Algorithms</h3>
+        <p>
+          Different algorithms that solve the same problem can have different Big-O
+          complexities. For example, bubble sort and quicksort both sort arrays, but
+          bubble sort has a worst-case complexity of O(n^2) while quicksort has a
+          worst-case complexity of O(n log n).
+        </p>
+      </div>
+    </section>
+    <section id="acronyms">
+      <h2 class="title">Common Big-O Complexity Acronyms 📝</h2>
+      <div class="explanation">
+        <p>Here are some common acronyms used in Big-O complexity analysis:</p>
+        <ul>
+          <li><strong>O(1):</strong> Constant time complexity</li>
+          <li><strong>O(log n):</strong> Logarithmic time complexity</li>
+          <li><strong>O(n):</strong> Linear time complexity</li>
+          <li><strong>O(n log n):</strong> Linearithmic time complexity</li>
+          <li><strong>O(n^2):</strong> Quadratic time complexity</li>
+          <li><strong>O(2^n):</strong> Exponential time complexity</li>
+          <li><strong>O(n!):</strong> Factorial time complexity</li>
+        </ul>
+      </div>
+
+    </section>
+    <section id="amortized-analysis">
+      <h2 class="title">Amortized Analysis 🤔</h2>
+      <div class="explanation">
+        <h3>Averaging Out the Cost</h3>
+        <p>
+          Amortized analysis is a way of analyzing the time complexity of an algorithm that
+          considers the average cost of operations over a sequence of operations rather than
+          focusing on the worst-case cost of a single operation. This is particularly useful
+          when some operations in a sequence are expensive, but those expensive operations
+          happen infrequently.
+        </p>
+        <h3>Examples</h3>
+        <ul>
+          <li>
+            <strong>Dynamic Arrays:</strong> When you add elements to a dynamic array (like
+            Python's list or Java's ArrayList), it sometimes needs to resize itself to
+            accommodate more elements. This resizing operation can be expensive (O(n)),
+            but it happens relatively rarely. Amortized analysis shows that the average
+            cost of adding an element to a dynamic array is still O(1).
+          </li>
+          <li>
+            <strong>Splay Trees:</strong> Splay trees are a type of self-adjusting binary
+            search tree. Certain operations (like searching for frequently accessed items)
+            can be very fast, while others (like searching for rarely accessed items) might
+            be slower. Amortized analysis helps show that the average time complexity for
+            operations on a splay tree is still efficient (O(log n) on average).
+          </li>
+        </ul>
+
+        <p>
+          Amortized analysis is a powerful tool for understanding the true performance of
+          data structures and algorithms in situations where the worst-case complexity
+          doesn't tell the whole story.
+        </p>
+      </div>
+    </section>
+    <section id="other-notations">
+      <h2 class="title">Beyond Big-O: Other Asymptotic Notations 🧮</h2>
+      <div class="explanation">
+        <p>
+          While Big-O notation is widely used to describe the upper bound of an algorithm's
+          growth, other notations provide a more complete picture of an algorithm's
+          performance:
+        </p>
+        <h3>1. Big-Theta (Θ) Notation</h3>
+        <p>
+          Big-Theta notation provides a <strong>tight bound</strong> on the growth of an
+          algorithm. It means that the algorithm's runtime grows at the <em>same rate</em> as the
+          function within the Θ notation, both for the upper and lower bounds.
+        </p>
+        <p>Example:</p>
+        <ul>
+          <li>If an algorithm's runtime is Θ(n), it means the runtime grows linearly with
+            the input size, <em>neither faster nor slower</em>.
+          </li>
+        </ul>
+        <h3>2. Big-Omega (Ω) Notation</h3>
+        <p>
+          Big-Omega notation describes the <strong>lower bound</strong> of an algorithm's
+          growth. It means the algorithm's runtime will grow <em>at least</em> as fast as the
+          function within the Ω notation.
+        </p>
+        <p>Example:</p>
+        <ul>
+          <li>If an algorithm's runtime is Ω(n log n), it means the runtime grows <em>at
+            least as fast</em> as n log n, but it could grow faster (e.g., O(n^2)).
+          </li>
+        </ul>
+
+        <h3>3. Little-o (o) Notation</h3>
+        <p>
+          Little-o notation describes an <strong>upper bound</strong> that is <em>not
+          asymptotically tight</em>. It means the algorithm's runtime grows <em>strictly slower</em>
+          than the function within the o notation.
+        </p>
+        <p>Example:</p>
+        <ul>
+          <li>If an algorithm's runtime is o(n^2), it means the runtime grows <em>strictly
+            slower</em> than n^2. It could be O(n log n) or O(n), for example.
+          </li>
+        </ul>
+
+        <h3>4. Little-omega (ω) Notation</h3>
+        <p>
+          Little-omega notation describes a <strong>lower bound</strong> that is <em>not
+          asymptotically tight</em>. It means the algorithm's runtime grows <em>strictly faster</em>
+          than the function within the ω notation.
+        </p>
+        <p>Example:</p>
+        <ul>
+          <li>If an algorithm's runtime is ω(n), it means the runtime grows <em>strictly
+            faster</em> than n. It could be Ω(n log n) or Ω(n^2), for example.
+          </li>
+        </ul>
+      </div>
+    </section>
+    IV. Glossary of Terms
+    <section id="glossary">
+      <h2 class="title">Algorithm Analysis Glossary 📖</h2>
+      <div class="explanation">
+        <dl>
+          <h3>
+            <dt><strong>Algorithm:</strong></dt>
+          </h3>
+          <dd>A step-by-step procedure or set of instructions for solving a specific problem.</dd>
+          <h3>
+            <dt><strong>Asymptotic Analysis:</strong></dt>
+          </h3>
+          <dd>A method for analyzing algorithm efficiency by examining how the runtime or
+            memory usage scales with increasing input sizes, particularly focusing on
+            large input sizes.
+          </dd>
+
+          <h3>
+            <dt><strong>Big-O Notation (O):</strong></dt>
+          </h3>
+          <dd>Describes the <em>upper bound</em> of an algorithm's growth. Indicates the worst-case
+            scenario for an algorithm's runtime or memory usage.
+          </dd>
+
+          <h3>
+            <dt><strong>Big-Theta Notation (Θ):</strong></dt>
+          </h3>
+          <dd>Describes the <em>tight bound</em> of an algorithm's growth. Indicates the average-case
+            scenario for an algorithm's runtime or memory usage.
+          </dd>
+
+          <h3>
+            <dt><strong>Big-Omega Notation (Ω):</strong></dt>
+          </h3>
+          <dd>Describes the <em>lower bound</em> of an algorithm's growth. Indicates the best-case
+            scenario for an algorithm's runtime or memory usage.
+          </dd>
+
+          <h3>
+            <dt><strong>Little-o Notation (o):</strong></dt>
+          </h3>
+          <dd>Describes an upper bound that is <em>not asymptotically tight</em>. Indicates that the
+            algorithm grows strictly slower than the function in the notation.
+          </dd>
+
+          <h3>
+            <dt><strong>Little-omega Notation (ω):</strong></dt>
+          </h3>
+          <dd>Describes a lower bound that is <em>not asymptotically tight</em>. Indicates that the
+            algorithm grows strictly faster than the function in the notation.
+          </dd>
+
+          <h3>
+            <dt><strong>Time Complexity:</strong></dt>
+          </h3>
+          <dd>The amount of time an algorithm takes to run as a function of the input size.</dd>
+
+          <h3>
+            <dt><strong>Space Complexity:</strong></dt>
+          </h3>
+          <dd>The amount of memory space an algorithm uses as a function of the input
+            size.
+          </dd>
+
+          <h3>
+            <dt><strong>Upper Bound:</strong></dt>
+          </h3>
+          <dd>The maximum amount of time or space an algorithm will take or use for any input
+            of a given size.
+          </dd>
+
+          <h3>
+            <dt><strong>Lower Bound:</strong></dt>
+          </h3>
+          <dd>The minimum amount of time or space an algorithm will take or use for any input
+            of a given size.
+          </dd>
+
+          <h3>
+            <dt><strong>Worst Case:</strong></dt>
+          </h3>
+          <dd>The scenario where an algorithm takes the longest time or uses the most space
+            to complete its task.
+          </dd>
+
+          <h3>
+            <dt><strong>Best Case:</strong></dt>
+          </h3>
+          <dd>The scenario where an algorithm takes the shortest time or uses the least space
+            to complete its task.
+          </dd>
+
+          <h3>
+            <dt><strong>Average Case:</strong></dt>
+          </h3>
+          <dd>The expected performance of an algorithm under typical conditions, considering
+            all possible input scenarios.
+          </dd>
+        </dl>
+      </div>
+    </section>
+    <section id="space-time-tradeoffs">
+      <h2 class="title">Space-Time Trade-offs ⚖️</h2>
+      <div class="explanation">
+        <h3>Balancing Act</h3>
+        <p>
+          In algorithm design, there is often a trade-off between space complexity and
+          time complexity. This means you might be able to make an algorithm faster if
+          you use more memory, or you can use less memory if you're willing to accept
+          a slower algorithm.
+        </p>
+        <h3>Examples</h3>
+        <ul>
+          <li>
+            <strong>Lookup Tables:</strong> If you need to perform many lookups based on
+            some input, you could pre-compute the results and store them in a lookup table.
+            This uses more space (to store the table) but makes the lookups very fast (O(1)).
+          </li>
+          <li>
+            <strong>Caching:</strong> Caching frequently accessed data in memory can make
+            your program faster, but it uses more memory to store the cache.
+          </li>
+          <li>
+            <strong>Compression:</strong> Data compression algorithms (like zip, gzip) trade
+            space for time. They make the data smaller (save space) but require time to
+            compress and decompress.
+          </li>
+        </ul>
+
+        <p>
+          The choice of whether to prioritize space or time depends on the specific
+          requirements of your application and the available resources (memory, processing power).
+        </p>
+      </div>
+    </section>
+    <section id="p-vs-np">
+      <h2 class="title">P vs. NP 🔐</h2>
+      <div class="explanation">
+        <h3>Complexity Classes</h3>
+        <p>
+          P and NP are complexity classes that classify computational problems based on
+          how difficult they are to solve.
+        </p>
+        <ul>
+          <li>
+            <strong>Class P (Polynomial Time):</strong> Problems in class P can be solved
+            in polynomial time. This means the time it takes to solve the problem is
+            proportional to some polynomial function of the input size (e.g., O(n), O(n^2),
+            O(n log n)). These problems are considered "easy" to solve.
+          </li>
+          <li>
+            <strong>Class NP (Non-deterministic Polynomial Time):</strong> Problems in class
+            NP may or may not be solvable in polynomial time. However, given a solution,
+            you can verify if it's correct in polynomial time.
+          </li>
+        </ul>
+
+        <h3>Why it Matters</h3>
+        <p>
+          The P vs. NP problem is one of the biggest unsolved problems in computer science.
+          It asks if every problem whose solution can be quickly verified (NP) can also
+          be quickly solved (P). If P = NP, it would have huge implications for cryptography,
+          optimization, and many other fields.
+        </p>
+
+        <h3>(Optional) NP-Completeness</h3>
+        <p>
+          NP-complete problems are the "hardest" problems within NP. If you could find
+          a polynomial-time solution to any one NP-complete problem, you would have
+          a polynomial-time solution to all problems in NP, proving that P = NP. Examples
+          of NP-complete problems include the Traveling Salesperson Problem and the Boolean
+          Satisfiability Problem (SAT).
+        </p>
+      </div>
+    </section>
+    <section id="big-o-in-interviews">
+      <h2 class="title">Big-O in Interviews 💼</h2>
+      <div class="explanation">
+        <h3>Analysis Tips</h3>
+        <ul>
+          <li>
+            <strong>Break Down the Problem:</strong> Identify the basic operations in the algorithm and analyze their
+            individual complexities.
+          </li>
+          <li>
+            <strong>Focus on Dominant Terms:</strong> Ignore constant factors and lower-order terms.
+          </li>
+          <li>
+            <strong>Consider Loops:</strong> The number of iterations in loops often determines the complexity. Nested
+            loops can significantly impact complexity.
+          </li>
+          <li>
+            <strong>Recursive Calls:</strong> Analyze the depth and branching factor of recursive calls.
+          </li>
+          <li>
+            <strong>Data Structures:</strong> Understand the complexities of the data structures used in the algorithm.
+          </li>
+          <li>
+            <strong>Amortized Analysis:</strong> Consider the average time per operation over a sequence of operations.
+          </li>
+        </ul>
+        <h3>Common Interview Questions</h3>
+        <ul>
+          <li>
+            Find the time and space complexity of a given function (often involving loops, recursion, or common data
+            structures).
+          </li>
+          <li>
+            Compare the efficiency of different approaches to solve a problem.
+          </li>
+          <li>
+            Optimize a given algorithm to improve its time or space complexity.
+          </li>
+          <li>
+            Explain the trade-offs between time and space complexity in a given solution.
+          </li>
+          <li>
+            Discuss the worst-case, average-case, and best-case complexities of an algorithm.
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section id="big-o-in-libraries">
+      <h2 class="title">Big-O in Real-World Libraries 💻</h2>
+      <div class="explanation">
+        <h3>Choosing the Right Tools</h3>
+        <p>
+          Understanding the time and space complexity of operations in common libraries and frameworks is crucial for
+          writing efficient code. Here are some examples:
+        </p>
+        <h3>Python Examples</h3>
+        <ul>
+          <li>
+            <strong>Lists:</strong> Appending to a list is O(1) on average (amortized analysis). Inserting or deleting
+            at a specific index is O(n). Searching is O(n).
+          </li>
+          <li>
+            <strong>Dictionaries (Hash Tables):</strong> Insertion, deletion, and lookup are all O(1) on average.
+          </li>
+          <li>
+            <strong>Sets:</strong> Similar to dictionaries, operations are O(1) on average.
+          </li>
+          <li>
+            <strong>Tuples:</strong> Accessing elements is O(1). Tuples are immutable, so insertion and deletion are not
+            applicable.
+          </li>
+          <li>
+            <strong>Deque (Double-Ended Queue):</strong> Appending and popping from either end are O(1). Insertion and
+            deletion in the middle are O(n).
+          </li>
+        </ul>
+        <h3>Java Examples</h3>
+        <ul>
+          <li>
+            <strong>ArrayList (Dynamic Array):</strong> Similar to Python lists. Appending is O(1) on average. Insertion
+            and deletion at a specific index are O(n). Searching is O(n).
+          </li>
+          <li>
+            <strong>HashMap (Hash Table):</strong> Similar to Python dictionaries. Insertion, deletion, and lookup are
+            O(1) on average.
+          </li>
+          <li>
+            <strong>TreeSet (Balanced Binary Search Tree):</strong> Insertion, deletion, and search are O(log n).
+          </li>
+          <li>
+            <strong>LinkedList:</strong> Insertion and deletion at the beginning or end are O(1). Accessing elements is
+            O(n). Searching is O(n).
+          </li>
+          <li>
+            <strong>PriorityQueue (Heap):</strong> Insertion and deletion are O(log n). Accessing the minimum or maximum
+            element is O(1).
+          </li>
+        </ul>
+        <p>
+          Always consult the documentation for your chosen language or framework to understand the complexity of the
+          operations you're using.
+        </p>
+      </div>
+    </section>
+    <section id="profiling-and-benchmarking">
+      <h2 class="title">Profiling and Benchmarking ⏱️</h2>
+      <div class="explanation">
+        <h3>Measure Real Performance</h3>
+        <p>
+          While Big-O notation provides a theoretical understanding of algorithm efficiency,
+          it's essential to measure the actual performance of your code using profiling
+          and benchmarking tools.
+        </p>
+        <ul>
+          <li>
+            <strong>Profiling:</strong> Profilers help you identify bottlenecks in your
+            code by showing you how much time is spent in different parts of your program.
+          </li>
+          <li>
+            <strong>Benchmarking:</strong> Benchmarking involves running your code with
+            different inputs and measuring the execution time to compare the performance
+            of different algorithms or code variations.
+          </li>
+        </ul>
+
+        <h3>The Limits of Big-O</h3>
+        <p>
+          Big-O analysis ignores constant factors and lower-order terms, which can sometimes
+          have a significant impact on real-world performance, especially for smaller input
+          sizes. Other factors like hardware, programming language, and code optimization
+          also play a role in actual execution time.
+        </p>
+
+        <p>
+          By combining Big-O analysis with profiling and benchmarking, you can get a
+          complete picture of your code's efficiency and make informed decisions about
+          optimization.
+        </p>
+        Use code with caution.
+      </div>
+    </section>
+    <section id="explaining-big-o-to-a-kid">
+      <h2 class="title">Explaining Big-O to a Kid 👶</h2>
+      <div class="explanation">
+        <ul>
+          <li>
+            Imagine you have a toy box with many toys 🧸. If you want to find a specific toy, you might have to look
+            through each toy one by one until you find it. This is like searching through a list of items. The time it
+            takes to find the toy depends on how many toys are in the box. This is called linear search, and it has a
+            Big-O notation of O(n), where n is the number of toys.
+          </li>
+          <li>
+            Now, imagine if the toys are organized in a special way, like in a sorted list 📚. If you know the toy you're
+            looking for is always in the middle, you can find it much faster. This is like binary search, and it has a
+            Big-O notation of O(log n). It means the time it takes to find the toy grows much slower compared to the
+            number of toys.
+          </li>
+          <li>
+            Let's say you have a magical toy box that can instantly find any toy you want ✨. This is like having a hash
+            table, and it has a Big-O notation of O(1). It means it takes the same amount of time to find a toy, no
+            matter how many toys are in the box.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="study-guide">
+      <h2 class="title">Study Guide 📖</h2>
+      <div class="explanation">
+        <h3>Key Concepts</h3>
+        <ul>
+          <li>
+            <strong>Big-O Notation:</strong> A way to describe the time complexity of an algorithm based on how it grows
+            with the input size.
+          </li>
+          <li>
+            <strong>Time Complexity:</strong> The amount of time an algorithm takes to run as a function of the input
+            size.
+          </li>
+          <li>
+            <strong>Space Complexity:</strong> The amount of memory space an algorithm uses as a function of the input
+            size.
+          </li>
+          <li>
+            <strong>Common Complexities:</strong> O(1), O(log n), O(n), O(n log n), O(n^2), O(2^n), O(n!).
+          </li>
+          <li>
+            <strong>Algorithm Analysis:</strong> Analyzing the efficiency of algorithms to understand their performance
+            characteristics.
+          </li>
+        </ul>
+        <h3>Study Tips</h3>
+        <ul>
+          <li>
+            <strong>Practice Problems:</strong> Solve algorithmic problems and analyze their time and space complexity.
+          </li>
+          <li>
+            <strong>Visualize Complexity:</strong> Use charts and graphs to visualize how different complexities grow
+            with input size.
+          </li>
+          <li>
+            <strong>Understand Data Structures:</strong> Learn the complexities of common data structures like arrays,
+            linked lists, and trees.
+          </li>
+          <li>
+            <strong>Study Real-World Examples:</strong> Understand how Big-O complexity applies to real-world scenarios
+            and libraries.
+          </li>
+          <li>
+            <strong>Prepare for Interviews:</strong> Practice explaining Big-O concepts and solving algorithmic problems
+            in interviews.
+          </li>
+        </ul>
+        <h3>Learning Timeline</h3>
+        <ul>
+          <li><strong>Week 1:</strong> Introduction to Big-O Notation and basic time complexities (O(1), O(n), O(n^2)).
+          </li>
+          <li><strong>Week 2:</strong> Study logarithmic and linearithmic complexities (O(log n), O(n log n)).</li>
+          <li><strong>Week 3:</strong> Explore quadratic, exponential, and factorial complexities (O(n^2), O(2^n),
+            O(n!)).
+          </li>
+          <li><strong>Week 4:</strong> Analyze common data structures and their complexities.</li>
+          <li><strong>Week 5:</strong> Solve practice problems and apply Big-O analysis.</li>
+          <li><strong>Week 6:</strong> Review and prepare for interviews.</li>
+        </ul>
+        <h3>Tips and Tricks to Learn Faster</h3>
+        <ul>
+          <li><strong>Break Down Problems:</strong> Divide complex problems into smaller, manageable parts.</li>
+          <li><strong>Use Visual Aids:</strong> Draw diagrams and charts to understand how algorithms work.</li>
+          <li><strong>Teach Others:</strong> Explaining concepts to others helps reinforce your understanding.</li>
+          <li><strong>Consistent Practice:</strong> Regularly solve problems to build and maintain your skills.</li>
+          <li><strong>Use Online Resources:</strong> Utilize tutorials, videos, and coding platforms for additional
+            practice.
+          </li>
+          <li><strong>Join Study Groups:</strong> Collaborate with peers to discuss and solve problems together.</li>
+        </ul>
+      </div>
+    </section>
+    <!-- Space Complexity Section -->
+    <section id="space-complexity">
+      <h2 class="title">Space Complexity 🧠</h2>
+      <div class="explanation">
+        <h3>Memory Usage Matters</h3>
+        <p>
+          Space complexity is a measure of how much memory an algorithm uses as a function of the input size. It's
+          important to consider space complexity when designing algorithms, especially for applications with limited
+          memory resources.
+        </p>
+        <h3>Common Space Complexities</h3>
+        <ul>
+          <li>
+            <strong>O(1) - Constant Space:</strong> Algorithms that use a fixed amount of memory regardless of the input
+            size.
+          </li>
+          <li>
+            <strong>O(n) - Linear Space:</strong> Algorithms that use memory proportional to the input size.
+          </li>
+          <li>
+            <strong>O(n^2) - Quadratic Space:</strong> Algorithms that use memory proportional to the square of the
+            input size.
+          </li>
+          <li>
+            <strong>O(log n) - Logarithmic Space:</strong> Algorithms that use memory proportional to the logarithm of
+            the input size.
+          </li>
+          <li>
+            <strong>O(n log n) - Linearithmic Space:</strong> Algorithms that use memory proportional to the product of
+            the input size and the logarithm of the input size.
+          </li>
+        </ul>
+        <h3>Optimizing Space Usage</h3>
+        <p>
+          To reduce space complexity, consider using in-place algorithms that modify the input data directly without
+          using additional memory. You can also reuse memory or use data structures that minimize memory usage.
+        </p>
+      </div>
+
+
+      <!-- Time Complexity Section -->
+      <section id="time-complexity">
+        <h2 class="title">Time Complexity ⏰</h2>
+        <div class="explanation">
+          <h3>Efficiency Matters</h3>
+          <p>
+            Time complexity is a measure of how the runtime of an algorithm grows with the input size. It helps us
+            understand how efficient an algorithm is and how it will perform as the input size increases.
+          </p>
+          <h3>Common Time Complexities</h3>
+          <ul>
+            <li>
+              <strong>O(1) - Constant Time:</strong> Algorithms that take the same amount of time to run regardless of
+              the input size.
+            </li>
+            <li>
+              <strong>O(log n) - Logarithmic Time:</strong> Algorithms that reduce the problem size by a constant factor
+              with each step.
+            </li>
+            <li>
+              <strong>O(n) - Linear Time:</strong> Algorithms that have a runtime proportional to the input size.
+            </li>
+            <li>
+              <strong>O(n log n) - Linearithmic Time:</strong> Algorithms that combine linear and logarithmic growth.
+            </li>
+            <li>
+              <strong>O(n^2) - Quadratic Time:</strong> Algorithms that have a runtime proportional to the square of the
+              input size.
+            </li>
+            <li>
+              <strong>O(2^n) - Exponential Time:</strong> Algorithms that double the work with each additional input.
+            </li>
+            <li>
+              <strong>O(n!) - Factorial Time:</strong> Algorithms that grow factorially with the input size.
+            </li>
+          </ul>
+          <h3>Optimizing Time Complexity</h3>
+          <p>
+            To improve time complexity, consider using more efficient algorithms, reducing the size of the input data,
+            or optimizing the code for better performance. Understanding time complexity helps you choose the right
+            algorithm for the job.
+          </p>
+        </div>
+      </section>
+
+
+    </section>
+
+    <!-- Video Section -->
+
+    <section id="video-section">
+      <h2 class="title">Big-O Complexity Videos 🎬</h2>
+      <div id="video-grid"></div>
+      <button id="prev-page">Previous</button>
+      <button id="next-page">Next</button>
+
+
+    </section>
+    <!--comment section-->
+    <div id="disqus_thread"></div>
+    <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function () { // DON'T EDIT BELOW THIS LINE
+        const d = document, s = d.createElement('script');
+        s.src = 'https://bigo-buddy.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+      Disqus.</a></noscript>
+
+
+  </div>
+</div>
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        data-id="base83" data-description="Support me on Buy me a coffee!" data-message="Your far to kind "
+        data-color="#FF813F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+<script src="/js/youtube.js"></script>
+<script id="dsq-count-scr" src="//bigo-buddy.disqus.com/count.js" async></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
