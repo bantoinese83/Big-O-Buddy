@@ -21,46 +21,15 @@ body {
   color: #f4f4f4;
 }
 
+
 .container {
-  max-width: 100%;
-  margin: 20px auto;
-  padding: 0 10px;
-  border-radius: 8px;
-}
-
-.big-o-description {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 20px;
-  max-width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
   box-sizing: border-box;
-  overflow: hidden;
-  word-wrap: break-word; /* Add this line */
 }
 
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
 
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1100px;
-  }
-}
 
 /* -------------------- Typography -------------------- */
 .title {
@@ -70,7 +39,6 @@ body {
   color: white;
   border-radius: 8px 8px 0 0;
   animation: fadeIn 1s ease-in-out;
-  background: linear-gradient(45deg, #ff6b6b, #f06595);
 }
 
 @keyframes fadeIn {
